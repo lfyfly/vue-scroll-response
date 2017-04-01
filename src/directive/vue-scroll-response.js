@@ -11,6 +11,8 @@ vueScrollResponse.install = function (Vue) {
       var contentTitles = contentEl.querySelectorAll(value.title, '.title')
       var catalogTitles = catalogEl.querySelectorAll(value.title, '.title')
 
+      var contentScrollEl = value.contentScrollEl && contentEl.querySelector(value.contentScrollEl) ? contentEl.querySelector(value.contentScrollEl) : contentEl
+
       // 记录旧的激活的目录索引
       var oldActiveIndex = 0
       var titlesTopArr = []
@@ -22,10 +24,13 @@ vueScrollResponse.install = function (Vue) {
 
           titlesTopArr.push(contentTitles[i].offsetTop)
         }
+        // 最后一项为 scrollHeight，在滚动函数中赋值（可能会变化）
+        titlesTopArr.push(contentScrollEl.scrollHeight)
+
       }
       // titlesTopArr初始化
       initTitlesTopArr()
-
+      console.log(titlesTopArr)
 
       // 方法
 
@@ -44,9 +49,11 @@ vueScrollResponse.install = function (Vue) {
 
       // 内容区滚动时，动态设置activeId
       var addActiveClass = (e) => {
+        console.log(titlesTopArr)
         var sTop = e.target.scrollTop
         for (var i = 0; i < titlesTopArr.length ; i++) {
           if (sTop < titlesTopArr[i]) {
+            console.log(sTop)
             // 只有当前激活的index改变了,才会进行演示切换
             if (i != oldActiveIndex) {
               _addClass(catalogTitles[i], 'catalog-active')
@@ -63,11 +70,9 @@ vueScrollResponse.install = function (Vue) {
         var activeCatalog = catalogEl.getElementsByClassName('catalog-active')[0]
         // 在下面看不见 || 在上面看不见
         if (activeCatalog.offsetTop+ activeCatalog.offsetHeight>= (catalogScrollEl.scrollTop + catalogEl.clientHeight) ) {
-          catalogScrollEl.scrollTop = activeCatalog.offsetTop - activeCatalog.offsetHeight
-          alert(1)
+          catalogScrollEl.scrollTop = activeCatalog.offsetTop
 
-        }else if ((activeCatalog.offsetTop + activeCatalog.offsetHeight) < catalogScrollEl.scrollTop){
-          alert(2)
+        }else if (activeCatalog.offsetTop  < catalogScrollEl.scrollTop){
           catalogScrollEl.scrollTop = activeCatalog.offsetTop - catalogEl.offsetHeight + activeCatalog.offsetHeight*2
 
         }
@@ -79,7 +84,6 @@ vueScrollResponse.install = function (Vue) {
       }
 
       // 滚动事件
-      var contentScrollEl = value.contentScrollEl && contentEl.querySelector(value.contentScrollEl) ? contentEl.querySelector(value.contentScrollEl) : contentEl
       contentScrollEl.addEventListener('scroll', contentScroll)
     }
   })
@@ -87,16 +91,15 @@ vueScrollResponse.install = function (Vue) {
 
 // 输出
 // if (typeof exports == "object") {
-//   module.exports = vueScrollResponse;
+//   module.exports = vueScrollResponse
 // } else if (typeof define == "function" && define.amd) {
 //   define([], function () {
 //     return vueScrollResponse
 //   })
 // } else if (window.Vue) {
 //   window.vueScrollResponse = vueScrollResponse;
-//   Vue.use(vueScrollResponse);
+//   Vue.use(vueScrollResponse)
 // }
-// })();
-
+// })()
 
 export default vueScrollResponse
