@@ -3,6 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 
+import scrollResponse from './directive/vue-scroll-response.js'
+Vue.use(scrollResponse)
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
