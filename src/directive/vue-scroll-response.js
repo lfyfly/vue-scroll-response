@@ -1,3 +1,5 @@
+// (function () {
+
 var vueScrollResponse = {}
 
 vueScrollResponse.install = function (Vue) {
@@ -74,5 +76,18 @@ vueScrollResponse.install = function (Vue) {
     }
   })
 }
+
+// 输出
+// if (typeof exports == "object") {
+//   module.exports = vueScrollResponse;
+// } else if (typeof define == "function" && define.amd) {
+//   define([], function () {
+//     return vueScrollResponse
+//   })
+// } else if (window.Vue) {
+//   window.vueScrollResponse = vueScrollResponse;
+//   Vue.use(vueScrollResponse);
+// }
+// })();
 
 export default vueScrollResponse

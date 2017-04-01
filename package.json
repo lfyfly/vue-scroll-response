@@ -1,8 +1,8 @@
 {
   "author": "lfyfly <410793635@qq.com>",
   "name": "vue-scroll-response",
-  "version": "1.0.0",
-  "description": "vue2.x component .Scroll the content area, directory will response at the same time, the corresponding visual area content directory area will display the activation style.",
+  "version": "1.0.1",
+  "description": "vue2.x directive .Scroll the content area, directory will response at the same time, the corresponding visual area content directory area will display the activation style.",
   "main": "index.js",
   "repository": {
     "type": "git",
