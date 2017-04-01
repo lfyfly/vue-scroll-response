@@ -1,16 +1,17 @@
 <!-- —————————————↓SCSS———————分界线————————————————————————— -->
 <style lang="scss">
-.vue-scroll-response {
+.catalog-active>a {
+      // 目录激活样式
+      color: red!important;
+    }
+.vue-scroll-response-test {
   &>* {
     box-sizing: border-box;
   }
   height: 100%;
-  &>.catalog {
+  &>#catalog {
     position: relative;
-    .catalog-active a {
-      // 目录激活样式
-      color: red;
-    }
+
     height: 100%;
     overflow: auto;
     width: 200px;
@@ -19,7 +20,7 @@
     position: absolute;
     left: 20px;
   }
-  &>.content {
+  &>#content {
     position: relative;
     height: 100%;
     overflow: auto;
@@ -27,13 +28,15 @@
     border: 1px solid red;
     h1 a {
       display: block;
-      height: 100px;
+      color: #ccc;
       background: black;
+      line-height: 100px;
     }
     h2 {
       display: block;
-      height: 50px;
+      height: 300px;
       background: #ccc;
+      line-height: 2;
     }
   }
 }
@@ -41,12 +44,12 @@
 
 <!-- —————————————↓HTML————————分界线———————————————————————— -->
 <template lang="pug">
-.vue-scroll-response
-  .catalog(ref="catalog")
+.vue-scroll-response-test
+  #catalog
     .catalog-item( v-for="v1 in testData")
       h1.title(): a(:href="'#'+v1.title") {{v1.title}}
       h2.title( v-if="v1.children", v-for="v2 in v1.children"): a(:href="'#'+v2.title") {{v2.title}}
-  .content(ref="content")
+  #content(ref="content")
     .content-item(v-for="v1 in testData")
       h1.title(:id="v1.title"): a(:href="'#'+v1.title") {{v1.title}}
       h2.title(v-if="v1.children", v-for="v2 in v1.children",:id="v2.title"): a(:href="'#'+v2.title") {{v2.title}}
