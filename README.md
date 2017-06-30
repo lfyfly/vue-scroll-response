@@ -4,9 +4,9 @@
 - 目录区激活样式可能不在可视区，赋予自动调整到可视区功能
 
 
-## [DEMO]()
+## [DEMO](https://lfyfly.github.io/vue-scroll-response/)
 
-## [GITHUB]()
+## [GITHUB](https://github.com/lfyfly/vue-scroll-response)
 
 ## 安装
 ```
